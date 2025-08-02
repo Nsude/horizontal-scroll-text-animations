@@ -45,7 +45,7 @@ function App() {
             text-[4.3rem] 
             tracking-tight
           '>
-            <span className='opacity-25'>The</span>
+            <span className='opacity-25'>the</span>
             <span>end</span>
           </h2>
         </div>

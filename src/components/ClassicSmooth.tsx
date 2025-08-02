@@ -26,9 +26,10 @@ const ClassicSmooth = ({ text }: Props) => {
     const initAnimation = () => {
       split = SplitText.create(text, { type: "chars/lines" });
       const characters = gsap.utils.toArray(split.chars) as HTMLElement[];
-  
+      const scrub = 1;
+
       gsap.set(textCon, { x: window.innerWidth, willChange: "transform" })
-  
+
       // horizontal scroll trigger set up
       scrollTween = gsap.to(textCon, {
         xPercent: -100,
@@ -39,24 +40,30 @@ const ClassicSmooth = ({ text }: Props) => {
           // pin: main,
           start: "left 50%",
           end: () => `+=${window.innerHeight}`,
-          scrub: 0
+          scrub,
+          onRefresh: (self) => {
+            self.refresh()
+          }
         }
       })
-  
+
       characters.forEach((char) => {
         gsap.set(char, { rotate: 45, willChange: "transform" });
-  
+
         const tl = gsap.timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
             trigger: char,
             start: "left 98%",
-            end: "left 63%",
+            end: "left 60%",
             containerAnimation: scrollTween,
-            scrub: 0,
+            scrub: scrub - 0.4,
+            onRefresh: (self) => {
+              self.refresh();
+            }
           }
         })
-  
+
         tl.to(char, {
           rotate: 0,
           yPercent: 150
