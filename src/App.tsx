@@ -37,7 +37,9 @@ function App() {
 
         {/* text showcase */}
         <section className='h-full w-full'>
-          <ClassicSmooth text='Why do You Suck at Code?' />
+          <ClassicSmooth 
+            text='Why do You Suck at Code?'
+            />
         </section>
 
         <div className='relative w-full h-[50vh] flex flex-col justify-center items-center'>

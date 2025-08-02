@@ -7,9 +7,10 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 interface Props {
   text: string;
+  pin?: boolean;
 }
 
-const ClassicSmooth = ({ text }: Props) => {
+const ClassicSmooth = ({ text, pin }: Props) => {
   const textRef = useRef(null);
   const mainRef = useRef(null);
   const textConRef = useRef(null);
@@ -37,8 +38,8 @@ const ClassicSmooth = ({ text }: Props) => {
         ease: "none", // remove this, see what happen :)
         scrollTrigger: {
           trigger: main,
-          // pin: main,
-          start: "left 50%",
+          pin: pin ? main : false,
+          start: `left ${pin ? "15%" : "50%"}`,
           end: () => `+=${window.innerHeight}`,
           scrub,
           onRefresh: (self) => {
@@ -81,7 +82,7 @@ const ClassicSmooth = ({ text }: Props) => {
 
 
   return (
-    <div ref={mainRef} className="relative w-full h-[25vh] md:h-[50vh] lg:h-[60vh] 2xl:h-[85vh]">
+    <div ref={mainRef} className={`relative w-full h-[25vh] md:h-[50vh] lg:h-[60vh] 2xl:h-[85vh]`}>
       <div ref={textConRef} className="w-[7000px] h-full">
         <h1 ref={textRef} className="-translate-y-1/2 tracking-tighter text-nowrap sm:text-[6.5rem] md:text-[9rem] lg:text-[12rem] xl:text-[14rem] 2xl:text-[19rem]">{text}</h1>
       </div>
