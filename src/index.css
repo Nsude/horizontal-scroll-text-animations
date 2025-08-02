@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: "Grotesk";
+  src: url("/public/assets/grotesk-regular.otf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: var(--font-main);
+  line-height: 1;
+  background-color: var(--color-bgGray);
+  overflow-x: hidden;
+}
+
+@theme {
+  --font-main: "Grotesk", sans-serif;
+
+  --color-bgGray: #f7f7f7;
+}
