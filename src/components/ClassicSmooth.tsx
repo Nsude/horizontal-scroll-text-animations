@@ -54,10 +54,10 @@ const ClassicSmooth = ({ text, pin }: Props) => {
           scrollTrigger: {
             trigger: char,
             start: "left 96%",
-            end: "left 60%",
+            end: "right-=50% 60%",
             containerAnimation: scrollTween,
             scrub: scrub - 0.4,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
           }
         })
 
