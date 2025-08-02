@@ -53,7 +53,7 @@ const ClassicSmooth = ({ text, pin }: Props) => {
           defaults: { ease: "none" },
           scrollTrigger: {
             trigger: char,
-            start: "left 98%",
+            start: "left 96%",
             end: "left 60%",
             containerAnimation: scrollTween,
             scrub: scrub - 0.4,
@@ -63,7 +63,7 @@ const ClassicSmooth = ({ text, pin }: Props) => {
 
         tl.to(char, {
           rotate: 0,
-          yPercent: 100,
+          yPercent: 140,
         })
           .to(char, {
             y: -80
