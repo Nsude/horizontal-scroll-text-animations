@@ -42,9 +42,7 @@ const ClassicSmooth = ({ text, pin }: Props) => {
           start: `left ${pin ? "15%" : "50%"}`,
           end: () => `+=${window.innerHeight}`,
           scrub,
-          onRefresh: (self) => {
-            self.refresh()
-          }
+          invalidateOnRefresh: true
         }
       })
 
@@ -55,28 +53,41 @@ const ClassicSmooth = ({ text, pin }: Props) => {
           defaults: { ease: "none" },
           scrollTrigger: {
             trigger: char,
-            start: "left 98%",
+            start: "left 97%",
             end: "left 60%",
             containerAnimation: scrollTween,
             scrub: scrub - 0.4,
-            onRefresh: (self) => {
-              self.refresh();
-            }
+            invalidateOnRefresh: true
           }
         })
 
         tl.to(char, {
           rotate: 0,
-          yPercent: 150
+          yPercent: 150,
         })
           .to(char, {
-            y: -100
+            y: -130
           })
       })
     }
 
     initAnimation();
 
+    const debounce = (func: Function, delay: number) => {
+      let timeout: any;
+      return (...args: any[]) => {
+        clearTimeout(timeout);
+        setTimeout(() => func(...args), delay);
+      }
+    }
+
+    const handleResize = debounce(() => {
+      ScrollTrigger.refresh();
+    }, 600)
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
 
   }, { dependencies: [] });
 
